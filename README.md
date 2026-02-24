@@ -116,6 +116,22 @@ base_url = "https://api.openai.com/v1"
 api_key = "sk-..."  # Replace with your actual API key
 ```
 
+## Environment Variables
+
+Crie um arquivo `.env` na raiz do projeto e adicione sua chave de API do Gemini (exemplo):
+
+```text
+GEMINI_API_KEY=your_api_key_here
+```
+
+- O arquivo `.env` deve estar listado em `.gitignore` (já incluso neste repositório).
+- O projeto usa `python-dotenv` para carregar automaticamente variáveis definidas em `.env`, se a biblioteca estiver instalada.
+- Nunca comite a chave de API no repositório.
+- Nunca registre (log) o valor da chave em logs ou outputs — registre apenas a presença booleana quando necessário.
+- Em produção, prefira configurar `GEMINI_API_KEY` nas variáveis de ambiente do sistema (por exemplo: Docker, CI/CD, servidor) ao invés de usar `.env`. Isso evita persistência acidental entre sessões e melhora a segurança.
+
+Esta seção ajuda quem clona o repositório a entender de onde vem a chave e como carregá-la de forma segura.
+
 ## Quick Start
 
 One line for run OpenManus:

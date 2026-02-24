@@ -29,6 +29,7 @@ from app.schema import (
     Message,
     ToolChoice,
 )
+from app.gemini import AsyncGeminiClient
 
 
 REASONING_MODELS = ["o1", "o3-mini"]
@@ -221,6 +222,9 @@ class LLM:
                 )
             elif self.api_type == "aws":
                 self.client = BedrockClient()
+            elif self.api_type == "gemini" or (self.model and str(self.model).startswith("gemini")):
+                # Use the Gemini provider (API key must be set in GEMINI_API_KEY env var)
+                self.client = AsyncGeminiClient(base_url=self.base_url)
             else:
                 self.client = AsyncOpenAI(api_key=self.api_key, base_url=self.base_url)
 
